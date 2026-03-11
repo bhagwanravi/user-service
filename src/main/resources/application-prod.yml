@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: prod
+  
+  config:
+    import: configserver:http://config-server:8888
+
+  datasource:
+    url: jdbc:postgresql://postgres-user:5432/user_service_db
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  kafka:
+    bootstrap-servers: kafka:9092
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    hostname: user-service
+    prefer-ip-address: false
+
+logging:
+  level:
+    com.example.userservice: INFO
+    org.springframework.security: WARN

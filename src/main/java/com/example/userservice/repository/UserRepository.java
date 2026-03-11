@@ -24,6 +24,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     
     boolean existsByEmail(String email);
     
+    Page<User> findAllByAcademyId(Long academyId, Pageable pageable);
+    
     Page<User> findByAcademyIdAndRole(Long academyId, UserRole role, Pageable pageable);
     
     Page<User> findByAcademyIdAndRoleAndStatus(Long academyId, UserRole role, UserStatus status, Pageable pageable);
@@ -56,4 +58,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     long countByAcademyIdAndRoleAndStatus(@Param("academyId") Long academyId, 
                                         @Param("role") UserRole role, 
                                         @Param("status") UserStatus status);
+    
+    @Query("SELECT u FROM User u JOIN u.batches b WHERE b.id = :batchId")
+    List<User> findByBatchesId(@Param("batchId") Long batchId);
 }
