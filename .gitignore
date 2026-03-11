@@ -1,0 +1,9 @@
+target/
+*.log
+*.class
+*.jar
+*.war
+*.ear
+node_modules/
+.idea/
+.vscode/
